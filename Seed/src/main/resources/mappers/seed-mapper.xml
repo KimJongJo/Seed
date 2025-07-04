@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="seed.project.Manager.mapper.SeedMapper">
+
+	<!-- 씨앗 등록 -->
+	<insert id="addSeed">
+		INSERT INTO "SEED"
+		VALUES(SEQ_SEED_NO.NEXTVAL, #{seedName}, #{seedImgPath},
+		#{seedPrice}, #{seedTemp}, #{seedTime}, #{seedDistance},
+		#{seedRate}, DEFAULT, #{seedCode})
+	</insert>
+	
+	
+	<!-- 씨앗 리스트 -->
+	<select id="seedList">
+		SELECT SEED_IMG_PATH, SEED_NAME, SEED_PRICE, SEED_NO
+		FROM "SEED"
+		WHERE SEED_SOLD_OUT = 'N'
+		ORDER BY SEED_TEMP
+	</select>
+	
+	<!-- 씨앗 가격 -->
+	<select id="seedPrice">
+		SELECT SEED_PRICE FROM "SEED"
+		WHERE SEED_NAME = #{seedName}
+	</select>
+	
+	<!-- 씨앗 가격 수정 -->
+	<update id="seedUpdatrPrice">
+		UPDATE "SEED" SET
+		SEED_PRICE = #{seedPrice}
+		WHERE SEED_NAME = #{seedName}
+	</update>
+	
+	<!-- 씨앗 품절 체크 -->
+	<select id="seedDeleteOnCheck">
+		SELECT COUNT(*) FROM "SEED"
+		WHERE SEED_NAME = #{seedName}
+		AND SEED_SOLD_OUT = 'Y'
+	</select>
+	
+	<!-- 씨앗 품절 -->
+	<update id="seedDeleteOn">
+		UPDATE "SEED" SET
+		SEED_SOLD_OUT = 'Y'
+		WHERE SEED_NAME = #{seedName}
+	</update>
+	
+	<!-- 씨앗 품절 체크 -->
+	<select id="seedDeleteOffCheck">
+		SELECT COUNT(*) FROM "SEED"
+		WHERE SEED_NAME = #{seedName}
+		AND SEED_SOLD_OUT = 'N'
+	</select>
+	
+	
+	<!-- 씨앗 품절 해제 -->
+	<update id="seedDeleteOff">
+		UPDATE "SEED" SET
+		SEED_SOLD_OUT = 'N'
+		WHERE SEED_NAME = #{seedName}
+	</update>
+	
+	
+	<!-- 씨앗 상세 정보 -->
+	<select id="seedDetail">
+		SELECT SEED_NAME, SEED_IMG_PATH, SEED_PRICE, SEED_NO,
+				SEED_TEMP, SEED_TIME, SEED_DISTANCE, SEED_RATE
+		FROM "SEED"
+		WHERE SEED_NO = #{seedNo}
+	</select>
+	
+
+
+	<!-- 높은 가격 순 정렬 -->
+	<select id="highList">
+		SELECT SEED_NO, SEED_NAME, SEED_IMG_PATH, SEED_PRICE, SEED_TEMP,
+		SEED_TIME, SEED_DISTANCE, SEED_RATE
+		FROM "SEED"
+		WHERE SEED_SOLD_OUT = 'N'
+		ORDER BY SEED_PRICE DESC
+	</select>
+	
+	<!-- 낮은 가격 순 정렬 -->
+	<select id="lowList">
+		SELECT SEED_NO, SEED_NAME, SEED_IMG_PATH, SEED_PRICE, SEED_TEMP,
+		SEED_TIME, SEED_DISTANCE, SEED_RATE
+		FROM "SEED"
+		WHERE SEED_SOLD_OUT = 'N'
+		ORDER BY SEED_PRICE
+	</select>
+	
+	<!-- 종류별 정렬 -->
+	<select id="typeList">
+		SELECT SEED_NO, SEED_NAME, SEED_IMG_PATH, SEED_PRICE, SEED_TEMP,
+		SEED_TIME, SEED_DISTANCE, SEED_RATE
+		FROM "SEED"
+		WHERE SEED_SOLD_OUT = 'N'
+		ORDER BY SEED_CODE, SEED_NO
+	</select>
+	
+	<!-- 이름 정렬 -->
+	<select id="nameList">
+		SELECT SEED_NO, SEED_NAME, SEED_IMG_PATH, SEED_PRICE, SEED_TEMP,
+		SEED_TIME, SEED_DISTANCE, SEED_RATE
+		FROM "SEED"
+		WHERE SEED_SOLD_OUT = 'N'
+		ORDER BY SEED_NAME, SEED_NO		
+	</select>
+	
+	
+	<!-- 씨앗 검색 -->
+	<select id="seedSearch">
+		SELECT SEED_IMG_PATH, SEED_NAME, SEED_PRICE, SEED_NO
+		FROM "SEED"
+		WHERE SEED_SOLD_OUT = 'N'
+		AND SEED_NAME LIKE '%' || #{key} || '%'
+		ORDER BY SEED_TEMP
+	</select>
+	
+	
+	
+	
+		
+</mapper>

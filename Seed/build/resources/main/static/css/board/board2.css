@@ -1,0 +1,601 @@
+#nav-bottom a:nth-child(3){
+    margin-top: 15px;
+    margin-bottom: 5px;
+    box-shadow: none;
+}
+
+.h1{
+    display: flex;
+    width: 850px;
+}
+
+div > h1{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+table{
+    width: 850px;
+    border-collapse: collapse;
+}
+
+
+.tr{
+    background-color: #8AA6A3;
+}
+
+.tr > th{
+    color: white;
+}
+
+table th{
+    font-size: 20px;
+}
+
+th > i{
+    width: 30px;
+}
+
+.tr_line{
+    border-bottom: 1px solid black;
+}
+
+td > a{
+    text-decoration: none;
+    color: black;
+}
+
+
+table td{
+    text-align: center;
+    font-size: 18px;
+}
+
+table tr{
+    height: 60px;
+}
+
+
+.boardTitle{
+    width: 300px;
+}
+
+
+
+.currentPage, .otherPage{
+    margin: 3px;
+    text-decoration: none;
+    color: black;
+}
+
+
+
+.currentPage{
+    color: red;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+.i{
+    text-decoration: none;
+    color: black;
+}
+
+
+
+
+
+.paging{
+    margin-top: 30px;
+}
+
+.paging a {
+    text-decoration: none;
+}
+
+
+.searchLine{
+    margin-top: 50px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+}
+
+
+.searchLine input{
+    height: 35px;
+    width: 300px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+    padding-left: 15px;
+    font-size: 18px;
+    outline: none;
+    margin: 5px;
+}
+
+.searchLine button{
+    height: 35px;
+    width: 50px;
+    border-radius: 5px;
+    border: none;
+    background-color: #127369;
+    color: white;
+    font-size: 18px;
+    transition-duration: 0.3s;
+}
+
+.searchLine button:hover, .write-btn:hover{
+    transition-duration: 0.3s;
+    background-color: #10403B;
+    cursor: pointer;
+}
+
+.write-btn:hover{
+    border-radius: 20px 5px 20px 5px;
+}
+
+
+.searchFilter{
+    height: 35px;
+    width: 100px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 15px;
+    text-align: center;
+    box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+    outline: none;
+}
+
+
+
+.w-div{
+    width: 800px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.write-btn{
+    width: 60px;
+    height: 40px;
+    background-color: #127369;
+    color: white;
+    margin-bottom: 50px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    transition-duration: 0.3s;
+    line-height: 40px;
+    text-align: center;
+    text-decoration: none;
+}
+
+
+.board{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 800px;
+    height: 1000px;
+    margin-bottom: 50px;
+}
+
+
+/* 게시글 번호, 게시글 제목 */
+.board-top{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 700px;
+    text-align: center;
+}
+
+
+/* 작성자, 조회수 */
+.board-middle{
+    display: flex;
+    margin-top: 15px;
+    align-items: center;
+    justify-content: space-between;
+    width: 700px;
+}
+
+/* 좋아요 */
+
+#thumbsUp{
+    cursor: pointer;
+}
+
+.like{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.like-box{
+    display: flex;
+}
+
+.like-box > :nth-child(2){
+    width: 40px;
+    text-align: end;
+    line-height: 25px;
+}
+
+.view-box{
+    display: flex;
+}
+
+.view-box > :nth-child(2){
+    width: 40px;
+    text-align: end;
+    line-height: 25px;
+}
+
+.view-box i, .like-box i{
+    font-size: 25px;
+}
+
+/* 게시글 내용 */
+.boardContent{
+    margin-top: 20px;
+    border: 1px solid black;
+    width: 700px;
+    height: 500px;
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 5px solid #10403B;
+    white-space: pre-wrap;
+    overflow: auto;
+}
+
+.content > div{
+    font-size: 20px;
+}
+
+
+.boardNo{
+    width: 100%;
+    font-size: 25px;
+    flex-basis: 30%;
+    background-color: #10403B;
+    border-radius: 15px 15px 0 0;
+}
+
+.boardTitle{
+    width: 100%;
+    font-size: 30px;
+    flex-basis: 70%;
+    background-color: #127369;
+    border-radius: 0 0 15px 15px;
+}
+
+.memberNickname{
+    font-size: 18px;
+    width: 100px;
+}
+
+.comment{
+    width: 700px;
+    background-color: #e8e4e4;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.comment-top{
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+
+.memberNickname{
+    margin-right: 30px;
+}
+
+.comment-box{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    width: 500px;
+    height: 80px;
+    background-color: white;
+    white-space: pre-wrap;
+    overflow: auto;
+}
+
+
+
+.textarea {
+    height: 80px;
+    width: 500px;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    border: 2px solid black;
+    border-radius: 5px;
+    resize: none;
+}
+
+.container2{
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+}
+
+.text{
+
+    display: none;
+}
+
+.updateBtn{
+    align-self: flex-end;
+    width: 40px;
+    height: 30px;
+    border: none;
+    background-color: #8AA6A3;
+    color: white;
+    border-radius: 5px;
+    transition-duration: 0.3s;
+    cursor: pointer;
+}
+
+.updateBtn:hover{
+    background-color: #10403B;
+    transition-duration: 0.3s;
+    border-radius: 20px 5px 20px 5px;
+}
+
+
+.under{
+    margin-bottom: 50px;
+}
+
+
+.commentPlus{
+    width: 850px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+    border-top: 1px solid black;
+    padding: 20px;
+}
+
+.span{
+    align-self: flex-start;
+}
+
+.span-under{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.commentPlus  textarea{
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.commentPlus  button{
+    border-radius: 5px;
+    margin-left: 10px;
+    height: 40px;
+    width: 55px;
+}
+
+/* 수정 or 삭제 버튼 */
+.UorD button{
+    margin-left: 10px;
+    width: 40px;
+    height: 30px;
+}
+
+.message{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.message > button{
+    margin-bottom: 20px;
+    margin-left: 10px;
+    height: 40px;
+    width: 55px;
+}
+
+
+.write-menu{
+    width: 700px;
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+
+.write-menu > button{
+    width: 45px;
+    height: 30px;
+    margin: 5px;
+}
+
+.write-menu > a {
+    width: 45px;
+    height: 30px;
+    margin: 5px;
+    border: 1px solid black;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+
+
+
+.write{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.write-form{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 70px;
+}
+
+.write  div{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+}
+
+.write span{
+    font-size: 25px;
+}
+
+
+.write-title{
+    height: 50px;
+    font-size: 25px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 5px solid #10403B;
+}
+
+.write-content{
+    height: 500px;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 5px solid #10403B;
+}
+
+.write-push-btn{
+    margin-top: 10px;
+    width: 50px;
+    height: 40px;
+    align-self: flex-end;
+    font-size: 15px;
+    background-color: #8AA6A3;
+    border: none;
+    color: white;
+    transition-duration: 0.3s;
+    border-radius: 5px;
+}
+
+.write-push-btn:hover{
+    background-color: #127369;
+    border-radius: 20px 5px 20px 5px;
+    transition-duration: 0.3s;
+}
+
+/* 수정 버튼 */
+#boardUpdate{
+    text-decoration: none;
+}
+
+
+#boardUpdate, .boardDelete{
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+    background-color: #8AA6A3;
+    border-radius: 5px;
+    border: none;
+    transition-duration: 0.3s;
+}
+
+
+#boardUpdate:hover{
+    background-color: #127369;
+}
+
+.boardDelete:hover{
+    background-color: #CE9898;
+
+}
+
+
+#boardUpdate:hover, .boardDelete:hover{
+    border-radius: 20px 5px 20px 5px;
+    transition-duration: 0.3s;
+}
+
+
+.commentWriteDate{
+    width: 70px;
+}
+
+
+
+/* 댓글 */
+.update, .delete{
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+    background-color: #8AA6A3;
+    border-radius: 5px;
+    border: none;
+    transition-duration: 0.3s;
+}
+
+.update:hover{
+    background-color: #127369;
+}
+
+.delete:hover{
+    background-color: #CE9898;
+
+}
+
+
+.update:hover, .delete:hover{
+    border-radius: 20px 5px 20px 5px;
+    transition-duration: 0.3s;
+}
+
+
+#comment-plus{
+    border: none;
+    border-radius: 5px;
+    background-color: #DADADA;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#comment-plus:hover{
+    background-color: #D0D0D0;
+}
+
+
+
+
+.boardListBtn{
+    text-decoration: none;
+    font-size: 20px;
+    margin-bottom: 20px;
+    margin-right: 590px;
+    width: 100px;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    background-color: #8AA6A3;
+    transition-duration: 0.2s;
+    text-align: center;
+}
+
+.boardListBtn:hover{
+    color: black;
+    transition-duration: 0.2s;
+}
+
+

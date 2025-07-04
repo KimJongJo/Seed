@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="seed.project.board.model.mapper.BoardMapper2">
+
+	<select id="selectBoardTypeList">
+		SELECT BOARD_CODE "boardCode", BOARD_NAME "boardName"
+		FROM BOARD_TYPE
+		ORDER BY BOARD_CODE
+	</select>
+	
+	<!-- 게시판 게시글 수 조회 -->
+	<select id="getListCount">
+		SELECT COUNT(*)
+		FROM "BOARD"
+		WHERE BOARD_DEL_FL = 'N'
+		AND BOARD_CODE = #{boardCode}
+	</select>
+
+	<!-- 문의 게시판 게시글 조회 -->
+	<select id="selectBoard2List">
+		SELECT BOARD_NO, BOARD_TITLE, MEMBER_NICKNAME,
+		 
+	    <![CDATA[
+	    CASE
+		    WHEN SYSDATE - BOARD_WRITE_DATE < 1 / 24 / 60
+		    THEN '방금 전'
+		    
+		    WHEN SYSDATE - BOARD_WRITE_DATE < 1 / 24
+		    THEN FLOOR((SYSDATE - BOARD_WRITE_DATE) * 24 * 60) || '분 전'
+		    
+		    WHEN SYSDATE - BOARD_WRITE_DATE < 1
+		    THEN FLOOR((SYSDATE - BOARD_WRITE_DATE) * 24) || '시간 전'
+		    
+		    WHEN SYSDATE - BOARD_WRITE_DATE < 2
+		    THEN '어제'
+		    
+		    ELSE TO_CHAR(BOARD_WRITE_DATE, 'YYYY-MM-DD')
+		    
+		END BOARD_WRITE_DATE
+    	]]>
+		, READ_COUNT,
+		
+		(SELECT COUNT(*) FROM "BOARD_LIKE"
+		WHERE BOARD_NO = B.BOARD_NO) LIKE_COUNT,
+			(SELECT COUNT(*) FROM
+			"COMMENT" C WHERE BOARD_NO = B.BOARD_NO
+			AND COMMENT_DEL_FL = 'N') COMMENT_COUNT
+		FROM "BOARD" B
+		JOIN "MEMBER" USING(MEMBER_NO)
+		WHERE BOARD_CODE = 2
+		AND BOARD_DEL_FL = 'N'
+		ORDER BY 1 DESC
+	</select>
+	
+	
+	<!-- 게시글 정보 가져오기 -->
+	<select id="board2Detail">
+		SELECT BOARD_NO, BOARD_TITLE, BOARD_CONTENT, MEMBER_NICKNAME,
+	    <![CDATA[
+	    CASE
+		    WHEN SYSDATE - BOARD_WRITE_DATE < 1 / 24 / 60
+		    THEN '방금 전'
+		    
+		    WHEN SYSDATE - BOARD_WRITE_DATE < 1 / 24
+		    THEN FLOOR((SYSDATE - BOARD_WRITE_DATE) * 24 * 60) || '분 전'
+		    
+		    WHEN SYSDATE - BOARD_WRITE_DATE < 1
+		    THEN FLOOR((SYSDATE - BOARD_WRITE_DATE) * 24) || '시간 전'
+		    
+		    WHEN SYSDATE - BOARD_WRITE_DATE < 2
+		    THEN '어제'
+		    
+		    ELSE TO_CHAR(BOARD_WRITE_DATE, 'YYYY-MM-DD')
+		    
+		END BOARD_WRITE_DATE
+    	]]>
+		,
+	    <![CDATA[
+	    CASE
+		    WHEN SYSDATE - BOARD_UPDATE_DATE < 1 / 24 / 60
+		    THEN '방금 전'
+		    
+		    WHEN SYSDATE - BOARD_UPDATE_DATE < 1 / 24
+		    THEN FLOOR((SYSDATE - BOARD_UPDATE_DATE) * 24 * 60) || '분 전'
+		    
+		    WHEN SYSDATE - BOARD_UPDATE_DATE < 1
+		    THEN FLOOR((SYSDATE - BOARD_UPDATE_DATE) * 24) || '시간 전'
+		    
+		    WHEN SYSDATE - BOARD_UPDATE_DATE < 2
+		    THEN '어제'
+		    
+		    ELSE TO_CHAR(BOARD_UPDATE_DATE, 'YYYY-MM-DD')
+		    
+		END BOARD_UPDATE_DATE
+    	]]>
+		 ,
+		MEMBER_NO, READ_COUNT,(SELECT COUNT(*) FROM "BOARD_LIKE"
+		WHERE BOARD_NO = B.BOARD_NO) LIKE_COUNT
+		FROM "BOARD" B
+		JOIN "MEMBER" USING(MEMBER_NO)
+		WHERE BOARD_NO = #{boardNo}
+	</select>
+	
+	<!-- 댓글 정보 가져오기 -->
+	<select id="board2CommentList">
+				SELECT LEVEL, C.* FROM
+		(SELECT COMMENT_NO, COMMENT_CONTENT,
+				    BOARD_NO, MEMBER_NO, MEMBER_NICKNAME, PARENT_COMMENT_NO, COMMENT_DEL_FL, 
+					<![CDATA[
+				    CASE
+					    WHEN SYSDATE - COMMENT_WRITE_DATE < 1 / 24 / 60
+					    THEN '방금 전'
+					    
+					    WHEN SYSDATE - COMMENT_WRITE_DATE < 1 / 24
+					    THEN FLOOR((SYSDATE - COMMENT_WRITE_DATE) * 24 * 60) || '분 전'
+					    
+					    WHEN SYSDATE - COMMENT_WRITE_DATE < 1
+					    THEN FLOOR((SYSDATE - COMMENT_WRITE_DATE) * 24) || '시간 전'
+					    
+					    ELSE TO_CHAR(COMMENT_WRITE_DATE, 'MM-DD')
+					    
+					END COMMENT_WRITE_DATE
+			    	]]>
+			    	
+				FROM "COMMENT"
+				JOIN MEMBER USING(MEMBER_NO)
+				WHERE BOARD_NO = #{boardNo}) C
+		WHERE COMMENT_DEL_FL = 'N'
+		OR 0 != (SELECT COUNT(*) FROM "COMMENT" SUB
+							WHERE SUB.PARENT_COMMENT_NO = C.COMMENT_NO
+							AND COMMENT_DEL_FL='N')
+		START WITH PARENT_COMMENT_NO IS NULL
+		CONNECT BY PRIOR COMMENT_NO = PARENT_COMMENT_NO
+		ORDER SIBLINGS BY COMMENT_NO
+	</select>
+	
+	<!-- 게시글 삭제(업데이트) -->
+	<update id="board2Delete">
+		UPDATE "BOARD" SET 
+		BOARD_DEL_FL = 'Y'
+		WHERE BOARD_NO = #{boardNo}
+	</update>
+	
+	<!-- 게시글 작성하기 -->
+	<insert id="board2Write">
+		INSERT INTO "BOARD"
+		VALUES(SEQ_BOARD_NO.NEXTVAL, #{boardTitle}, #{boardContent},
+		DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT,
+		#{memberNo}, 2)
+	</insert>
+	
+	<!-- 게시글 정보 가져오기 -->
+	<select id="board2Info">
+		SELECT BOARD_TITLE, BOARD_CONTENT, BOARD_NO
+		FROM "BOARD"
+		WHERE BOARD_NO = #{boardNo}
+	</select>
+	
+	<!-- 게시글 수정하기 -->
+	<update id="board2Update">
+		UPDATE "BOARD" SET
+		BOARD_TITLE = #{boardTitle},
+		BOARD_CONTENT = #{boardContent},
+		BOARD_UPDATE_DATE = SYSDATE
+		WHERE BOARD_NO = #{boardNo}
+	</update>
+	
+	
+	<!-- 게시글 검색 삭제되지 않은 게시글 모음 -->
+	<select id="getSearchCount2" resultType="Board">
+		SELECT BOARD_NO, BOARD_TITLE, MEMBER_NICKNAME, 
+	    <![CDATA[
+	    CASE
+		    WHEN SYSDATE - BOARD_WRITE_DATE < 1 / 24 / 60
+		    THEN '방금 전'
+		    
+		    WHEN SYSDATE - BOARD_WRITE_DATE < 1 / 24
+		    THEN FLOOR((SYSDATE - BOARD_WRITE_DATE) * 24 * 60) || '분 전'
+		    
+		    WHEN SYSDATE - BOARD_WRITE_DATE < 1
+		    THEN FLOOR((SYSDATE - BOARD_WRITE_DATE) * 24) || '시간 전'
+		    
+		    WHEN SYSDATE - BOARD_WRITE_DATE < 2
+		    THEN '어제'
+		    
+		    ELSE TO_CHAR(BOARD_WRITE_DATE, 'YYYY-MM-DD')
+		    
+		END BOARD_WRITE_DATE
+    	]]>, 
+		READ_COUNT,
+		LIKE_COUNT,
+			(SELECT COUNT(*) FROM
+			"COMMENT" C WHERE BOARD_NO = B.BOARD_NO) COMMENT_COUNT
+		FROM "BOARD" B
+		JOIN "MEMBER" USING(MEMBER_NO)
+		WHERE BOARD_CODE = 2
+		AND BOARD_DEL_FL = 'N'
+		<choose>
+			<when test='option=="title"'>
+				AND BOARD_TITLE LIKE '%' || #{keyWord} || '%'
+			</when>
+			
+			<when test='option=="content"'>
+				AND BOARD_CONTENT LIKE '%' || #{keyWord} || '%'
+			</when>
+			
+			<when test='option=="sum"'>
+				AND (
+					BOARD_CONTENT LIKE '%' || #{keyWord} || '%'
+					OR
+					BOARD_TITLE LIKE '%' || #{keyWord} || '%'
+					) 
+			</when>
+			
+			<otherwise>
+				AND MEMBER_NICKNAME LIKE '%' || #{keyWord} || '%'
+			</otherwise>
+			
+		</choose>
+		
+		ORDER BY 1 DESC
+	</select>
+	
+	
+	<!-- 댓글 달기 -->
+	<insert id="board2Comment">
+		INSERT INTO "COMMENT"
+		VALUES(SEQ_COMMENT_NO.NEXTVAL, #{comment}, DEFAULT, DEFAULT,
+		#{boardNo}, #{memberNo}, NULL)
+	</insert>
+	
+	<!-- 댓글 삭제 -->
+	<update id="board2CommentDelete">
+		UPDATE "COMMENT" SET
+		COMMENT_DEL_FL = 'Y'
+		WHERE COMMENT_NO = #{commentNo}
+	</update>
+	
+	<!-- 댓글 수정 -->
+	<update id="board2CommentUpdate">
+		UPDATE "COMMENT" SET
+		COMMENT_CONTENT = #{commentContent}
+		WHERE COMMENT_NO = #{commentNo}
+	</update>
+
+	<!-- 좋아요 여부 -->
+	<select id="board2Like">
+		SELECT COUNT(*) FROM
+		"BOARD_LIKE"
+		WHERE MEMBER_NO = #{memberNo}
+		AND BOARD_NO = #{boardNo}
+	</select>
+	
+	<!-- 좋아요 취소 -->
+	<delete id="board2LikeBack">
+		DELETE FROM "BOARD_LIKE"
+		WHERE MEMBER_NO = #{memberNo}
+		AND BOARD_NO = #{boardNo}
+	</delete>
+	
+	<!-- 좋아요 누르기 -->
+	<insert id="board2LikePush">
+		INSERT INTO "BOARD_LIKE"
+		VALUES(#{boardNo}, #{memberNo})
+	</insert>
+	
+	<!-- 좋아요 개수 반환 -->
+	<select id="board2LikeCount">
+		SELECT COUNT(*) FROM "BOARD_LIKE"
+		WHERE BOARD_NO = #{boardNo}
+	</select>
+	
+	<!-- 조회수 증가 -->
+	<update id="boardView">
+		UPDATE "BOARD" SET
+		READ_COUNT = (SELECT READ_COUNT
+					  FROM BOARD
+					  WHERE BOARD_NO = #{boardNo}) + 1
+		WHERE BOARD_NO = #{boardNo}
+	</update>
+	
+	<!-- 게시글 글쓴이 번호 -->
+	<select id="boardWriter">
+		SELECT MEMBER_NO FROM "BOARD"
+		WHERE BOARD_NO = #{boardNo}
+	</select>
+	
+</mapper>

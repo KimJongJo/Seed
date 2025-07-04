@@ -1,0 +1,306 @@
+#manager{
+    margin-top: 15px;
+    margin-bottom: 5px;
+    box-shadow: none;
+}
+
+
+.sectionDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.seed{
+    border: 1px solid black;
+    text-decoration: none;
+    width: 120px;
+    height: 50px;
+}
+
+.menu1, .menu2{
+    display: flex;
+}
+
+.menu  .seed{
+    flex-basis: 50%;
+    text-align: center;
+    line-height: 80px;
+    font-size: 23px;
+    margin: 20px;
+    color: white;
+    background-color: #8AA6A3;
+    border-radius: 5px;
+    border: none;
+}
+
+.container3 {
+    padding-top: 1em;
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .container3 a {
+      text-decoration: none;
+  }
+
+  .first, .second{
+    display: flex;
+  }
+
+  .first {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    height: 70px;
+  }
+
+  .second{
+    margin-bottom: 60px;
+    height: 70px;
+  }
+  
+  a.button {
+    display: block;
+    position: relative;
+    font-size: 20px;
+    width: 120px;
+    margin: 10px 5px 10px 5px;
+    text-align: center;
+    line-height: 50px;
+    color: #FFF;
+    border-radius: 5px;
+    transition: all 0.2s ;
+  }
+  
+  .btnBlueGreen {
+    background: #127369;
+  }
+  
+  .other{
+    background-color: #8AA6A3;
+    border: none;
+  }
+  
+  
+  
+/* 3D */
+.btnBlueGreen.btnPush {
+    box-shadow: 0px 5px 0px 0px #10403B;
+}
+
+.btnPush:hover {
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.btnBlueGreen.btnPush:hover {
+    box-shadow: 0px 0px 0px 0px #10403B;
+}
+
+.other.btnPush{
+    box-shadow: 0px 5px 0px 0px #6f8582;
+}
+
+.other.btnPush:hover{
+    box-shadow: 0px 0px 0px 0px #6f8582;
+}
+
+
+/* 상품 등록 */
+.sectionForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+}
+
+.sectionForm input{
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    padding-left: 10px;
+    font-size: 14px;
+    border: 3px solid #127369;
+}
+
+select{
+    width: 200px;
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.seedAdd{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+main{
+    width: 850px;
+}
+
+
+
+h1{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#seedImg{
+    text-align: center;
+    line-height: 40px;
+    border: none;
+}
+
+table{
+    border-spacing: 20px 15px;
+}
+
+td{
+    text-align: center;
+}
+
+table span{
+    font-size: 18px;
+}
+
+
+.addBtn{
+    margin-top: 20px;
+    width: 100px;
+    height: 40px;
+    font-size: 18px;
+    border-radius: 5px;
+    background-color: #127369;
+    color: white;
+    border: none;
+    transition-duration: 0.3s;
+}
+
+.addBtn:hover{
+    border-radius: 20px 5px 20px 5px;
+    transition-duration: 0.3s;
+    background-color: #10403B;
+    cursor: pointer;
+}
+
+
+
+.mainDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 100px;
+}
+
+.form{
+    width: 300px;
+    height: 180px;
+}
+
+.form > div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form span{
+    font-size: 18px;
+    margin: 10px;
+}
+
+.form input{
+    width: 150px;
+    height: 30px;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+
+.form button{
+    width: 50px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+    transition-duration: 0.3s;
+    background-color: #8AA6A3;
+    color: white;
+}
+
+.form button:hover{
+    transition-duration: 0.3s;
+    background-color: #127369;
+    cursor: pointer;
+}
+
+.center{
+    border-left: 2px solid black;
+}
+
+
+
+.seedUpdate{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+}
+
+.seedUpdateForm p {
+    color: lightgray;
+    margin-bottom: 20px;
+}
+
+
+.seedUpdateForm  div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.seedUpdateForm input{
+    width: 120px;
+    height: 40px;
+    border-radius: 5px;
+    padding-left: 10px;
+    font-size: 18px;
+
+    margin: 20px;
+}
+
+.seedUpdateForm span{
+    font-size: 18px;
+}
+
+.seedUpdateForm button{
+    width: 50px;
+    height: 30px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: #8AA6A3;
+    color: white;
+    transition-duration: 0.3s;
+    border: none;
+}
+
+.seedUpdateForm button:hover{
+    transition-duration: 0.3s;
+    background-color: #127369;
+    cursor: pointer;
+}
+
+.firstDiv{
+    margin-bottom: 300px;
+}
+

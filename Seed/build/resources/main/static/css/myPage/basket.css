@@ -1,0 +1,273 @@
+/* *{
+    border: 1px solid blue;
+} */
+
+.section{
+    width: 900px;
+    height: 700px;
+    display: flex;
+}
+
+.left-nav{
+    flex-basis: 20%;
+}
+
+.blankdiv{
+    flex-basis: 80%;
+}
+
+.blank{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 660px;
+    width: 720px;
+    padding-left: 50px;
+    
+}
+
+
+
+
+
+.basket{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+    width: 660px;
+    flex-basis: 90%;
+}
+
+.basket2{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 660px;
+    flex-basis: 90%;
+}
+
+
+
+
+
+.buyDiv{
+    flex-basis: 10%;
+}
+
+
+.basket2 > i{
+    font-size: 200px;
+    margin-bottom: 20px;
+    color: #BFBFBF;
+}
+
+.basket2 > span{
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+
+.basket2 > a{
+    text-decoration: none;
+    padding: 10px;
+    background-color: #8AA6A3;
+    border-radius: 5px;
+    color: black;
+    width: 85px;
+    height: 40px;
+    
+    transition-duration: 0.3s;
+}
+
+.basket2 > a:hover{
+    transition-duration: 0.3s;
+    background-color: #127369;
+    color: white;
+}
+
+
+
+
+
+#foot-div{
+    margin-top: 35px;
+    display: flex;
+    justify-content: space-around;
+    width: 700px;
+}
+
+#foot-div > img{
+    width: 100px;
+    height: 100px;
+}
+
+
+
+
+
+#cart{
+    background: #00AE68;
+    box-shadow: 0px 5px 0px 0px #007144;
+    text-decoration: none;
+}
+
+
+#cart:hover{
+    margin-top: 15px;
+    margin-bottom: 5px;
+    box-shadow: 0px 0px 0px 0px #21825B;
+}
+
+
+
+/* 장바구니 */
+.allBox{
+    width: 600px;
+    height: 120px;
+    border-bottom: 1px solid black;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.seedImg{
+    width: 90px;
+    height: 90px;
+}
+
+.checkbox{
+    width: 20px;
+    height: 20px;
+    margin-right: 50px;
+    accent-color: #21825B;
+}
+
+.checkboxDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.imgDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imgA{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.seedinfo{
+    width: 400px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+
+.seedleft{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-basis: 40%;
+}
+
+
+.span{
+    display: flex;
+    align-items: center;
+    margin-left: 40px;
+    flex-basis: 40%;
+}
+
+.span > button:first-child{
+    margin-left: 50px;
+}
+
+.span > span{
+    margin: 15px;
+    font-size: 18px;
+}
+
+.span > button{
+    font-size: 15px;
+    border: none;
+    background-color: #127369;
+    width: 20px;
+    height: 20px;
+    color: white;
+    border-radius: 5px;
+    transition-duration: 0.3s;
+}
+
+.span > button:hover{
+    transition-duration: 0.3s;
+    background-color: #10403B;
+    cursor: pointer;
+}
+
+
+.buy{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 300px;
+}
+
+.price{
+    display: flex;
+    justify-content: space-around;
+    width: 170px;
+}
+
+.price > span{
+    font-size: 18px;
+}
+
+.buy > button{
+    width: 70px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #8AA6A3;
+    color: white;
+    transition-duration: 0.3s;
+}
+
+.buy > button:hover{
+    background-color: #127369;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+.count{
+    width: 10px;
+}
+
+
+.cross{
+    font-size: 20px;
+    align-self: flex-start;
+    
+}
+
+.cross:hover{
+    font-weight: bold;
+    cursor: pointer;
+}

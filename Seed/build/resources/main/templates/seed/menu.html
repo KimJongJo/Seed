@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>관리자 - 상품 추가</title>
+
+    <th:block th:replace="~{common/common}"></th:block>
+    <link rel="stylesheet" href="/css/seed/menu.css">
+    <link rel="icon" href="/images/씨앗.png">
+
+</head>
+<body>
+    <!-- 헤더 추가 -->
+    <th:block th:replace="~{common/header}"></th:block>
+
+    
+
+
+    <main>
+        <section class="sectionDiv">
+            <nav id="nav-bottom" class="container3">
+                <div class="first">
+                    <a href="/seed/add" class="seed button btnPush btnBlueGreen other">씨앗 등록</a>
+                    <a href="/seed/update" class="seed button btnPush btnBlueGreen other">가격 수정</a>
+                </div>
+                <div class="second">
+                    <a href="/seed/delete" class="seed button btnPush btnBlueGreen other">씨앗 품절</a>
+                    <a class="seed button btnPush btnBlueGreen other"></a>
+                </div>
+            </nav>
+        </section>
+    </main>
+    
+    <th:block th:replace="~{common/footer}"></th:block>
+</body>
+</html>
